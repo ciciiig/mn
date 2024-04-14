@@ -44,7 +44,7 @@ export function createProcutsCards (cardsContainer, products) {
         // Create add to cart button
         const addToCartBtn = document.createElement('a');
         addToCartBtn.href = '#';
-        addToCartBtn.classList.add('btn', 'btn-outline-primary');
+        addToCartBtn.classList.add('btn', 'btn-outline-dark');
         addToCartBtn.textContent = 'Add to cart';
 
         // Append title and price to titlePriceDiv
