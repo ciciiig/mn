@@ -20,6 +20,73 @@
 </head>
 
 <body>
+    <!-- Auth modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+                                title="Must contain at least 8 characters and at least 1 uppercase, 1 lowercase letter and 1 number">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-secondary btn-sm" data-bs-target="#register-modal" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Register</button>
+                    <button type="submit" class="btn btn-outline-dark" form="loginForm">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="username"
+                                required>
+                            <label for="floatingInput">Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+                                title="Must contain at least 8 characters and at least 1 uppercase, 1 lowercase letter and 1 number">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-secondary btn-sm" data-bs-target="#login-modal" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Login</button>
+                    <button type="submit" class="btn btn-outline-dark" id="registerForm">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="app-cotainer">
         <!-- navbar -->
         <div class="container-xl">
@@ -59,10 +126,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#login-modal">
                                 <div class="d-flex align-items-center flex-column">
                                     <!-- <i class="bi bi-person fs-3" style="-webkit-text-stroke: 1px;"></i> -->
-                                    <img src="./assets/nouser.png" alt="profile picture" class="rounded-circle" style="width: 40px; height: 40px; margin-top: -8px; margin-bottom: -8px">
+                                    <img src="./assets/nouser.png" alt="profile picture" class="rounded-circle"
+                                        style="width: 40px; height: 40px; margin-top: -8px; margin-bottom: -8px">
                                     <div class="bold">Account</div>
                                 </div>
                             </a>
