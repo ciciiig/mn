@@ -31,12 +31,12 @@
                 <div class="modal-body">
                     <form id="loginForm">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingLoginEmail" placeholder="name@example.com"
+                            <input type="email" class="form-control" name="loginEmail" id="floatingLoginEmail" placeholder="name@example.com"
                                 required>
                             <label for="floatingLoginEmail">Email address</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingLoginPassword" placeholder="Password"
+                            <input type="password" class="form-control" name="loginPassword" id="floatingLoginPassword" placeholder="Password"
                                 required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
                                 title="Must contain at least 8 characters and at least 1 uppercase, 1 lowercase letter and 1 number">
                             <label for="floatingLoginPassword">Password</label>
@@ -46,7 +46,7 @@
                 <div class="modal-footer justify-content-between">
                     <button class="btn btn-secondary btn-sm" data-bs-target="#register-modal" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Register</button>
-                    <button type="submit" class="btn btn-outline-dark" form="loginForm">Login</button>
+                    <button type="submit" class="btn btn-outline-dark" form="loginForm" id="loginBtn">Login</button>
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
                                     <!-- <i class="bi bi-person fs-3" style="-webkit-text-stroke: 1px;"></i> -->
                                     <img src="./assets/nouser.png" alt="profile picture" class="rounded-circle"
                                         style="width: 40px; height: 40px; margin-top: -8px; margin-bottom: -8px">
-                                    <div class="bold">Account</div>
+                                    <div class="bold" id="userAccount">Account</div>
                                 </div>
                             </a>
                         </li>

@@ -3,6 +3,8 @@ import { createNavItems } from "./utils/createNavItems.js";
 import { createPaymentMethods } from "./utils/createPaymentMethods.js";
 import { createProcutsCards } from "./utils/createProductCards.js";
 import { registerThroughLocalStorage } from "./utils/registerThroughLocalStorage.js";
+import { loginThroughLocalStorage } from "./utils/loginThroughLocalStorage.js";
+import { showUsername } from "./utils/showUsername.js";
 
 const appState = {
     url: {
@@ -42,17 +44,24 @@ function render() {
 
 function handleClickLogin (e)  {
     e.preventDefault();
+
+    // handle Login through Local Storage
+    const loginFormData = new FormData(e.target);
+    const loginEmail = loginFormData.get('loginEmail');
+    const loginPassword = loginFormData.get('loginPassword');
+
+    loginThroughLocalStorage(loginEmail, loginPassword, appState.users)
+    showUsername(appState.users)
 }
 
 function handleClickRegister (e) {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-
-    const registerEmail = formData.get('registerEmail');
-    const registerPassword = formData.get('registerPassword');
-
-    registerThroughLocalStorage(appState.users, registerEmail, registerPassword)
+    // handle register through Local Storage
+    const registerFormData = new FormData(e.target);
+    const registerEmail = registerFormData.get('registerEmail');
+    const registerPassword = registerFormData.get('registerPassword');
+    registerThroughLocalStorage(registerEmail, registerPassword, appState.users)
 }
 
 
