@@ -40,6 +40,8 @@ function render() {
     createNavItems(elements.navItemsContainer, appState.categories);
     createPaymentMethods(elements.paymentContainer, appState.paymentMethods);
     createProcutsCards(elements.topProductsCardsContainer, appState.products)
+
+    showUsername(appState.users)
 }
 
 function handleClickLogin (e)  {

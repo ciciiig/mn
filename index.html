@@ -26,7 +26,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="login-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="loginForm">
@@ -121,9 +121,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#login-modal">
+                            <a class="nav-link" role="button" data-bs-toggle="modal" data-bs-target="#login-modal" id="userAccountContainer">
                                 <div class="d-flex align-items-center flex-column">
-                                    <!-- <i class="bi bi-person fs-3" style="-webkit-text-stroke: 1px;"></i> -->
                                     <img src="./assets/nouser.png" alt="profile picture" class="rounded-circle"
                                         style="width: 40px; height: 40px; margin-top: -8px; margin-bottom: -8px">
                                     <div class="bold" id="userAccount">Account</div>
