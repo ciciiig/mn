@@ -5,6 +5,7 @@ import { createProcutsCards } from "./utils/createProductCards.js";
 import { registerThroughLocalStorage } from "./utils/registerThroughLocalStorage.js";
 import { loginThroughLocalStorage } from "./utils/loginThroughLocalStorage.js";
 import { showUsername } from "./utils/showUsername.js";
+import { logout } from "./utils/logout.js";
 
 const appState = {
     url: {
@@ -34,6 +35,7 @@ const elements = {
     topProductsCardsContainer: document.getElementById('top-products-cards-container'),
     loginForm: document.forms['loginForm'],
     registerForm: document.forms['registerForm'],
+    logoutBtn: document.getElementById('logoutBtn'),
 }
 
 function render() {
@@ -71,9 +73,11 @@ function handleClickRegister (e) {
 function addAndRemoveListeners() {
     elements.loginForm.removeEventListener('submit', handleClickLogin);
     elements.registerForm.removeEventListener('submit', handleClickRegister);
+    elements.logoutBtn.removeEventListener('click', () => logout(appState.users));
     
     elements.loginForm.addEventListener('submit', handleClickLogin);
     elements.registerForm.addEventListener('submit', handleClickRegister);
+    elements.logoutBtn.addEventListener('click', () => logout(appState.users));
 }
 
 async function initializePage() {
