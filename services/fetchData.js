@@ -16,11 +16,3 @@ export async function fetchProducts(appState) {
     }
 }
 
-export async function fetchUsers(appState) {
-    try {
-        const response = await fetch('https://fakestoreapi.com/users');
-        return await response.json();
-    } catch (error) {
-        appState.error = error
-    }
-}

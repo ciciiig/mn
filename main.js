@@ -1,4 +1,4 @@
-import { fetchCategories, fetchProducts, fetchUsers } from "./services/fetchData.js";
+import { fetchCategories, fetchProducts } from "./services/fetchData.js";
 import { createNavItems } from "./utils/createNavItems.js";
 import { createPaymentMethods } from "./utils/createPaymentMethods.js";
 import { createProcutsCards } from "./utils/createProductCards.js";
@@ -78,8 +78,6 @@ function addAndRemoveListeners() {
 
 async function initializePage() {
     // fetch data
-    const fakeApiUsers = await fetchUsers(appState);
-    appState.users = [...appState.users, ...fakeApiUsers];
     appState.categories = await fetchCategories(appState);
     appState.products = await fetchProducts(appState);
 
