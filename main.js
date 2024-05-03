@@ -6,6 +6,7 @@ import { registerThroughLocalStorage } from "./utils/registerThroughLocalStorage
 import { loginThroughLocalStorage } from "./utils/loginThroughLocalStorage.js";
 import { showUsername } from "./utils/showUsername.js";
 import { logout } from "./utils/logout.js";
+import { createCart } from "./utils/createCart.js";
 
 const appState = {
     error: '',
@@ -37,9 +38,9 @@ const elements = {
 function render() {
     createNavItems(elements.navItemsContainer, appState.categories);
     createPaymentMethods(elements.paymentContainer, appState.paymentMethods);
-    createProcutsCards(elements.topProductsCardsContainer, appState.products)
-
-    showUsername(appState.users)
+    createProcutsCards(elements.topProductsCardsContainer, appState.products);
+    showUsername(appState.users);
+    initCart();
 }
 
 function handleClickLogin (e)  {
@@ -64,7 +65,11 @@ function handleClickRegister (e) {
     registerThroughLocalStorage(registerEmail, registerPassword, appState.users)
 }
 
-
+function initCart() {
+    const cartContainer = document.createElement('div');
+    cartContainer.innerHTML = createCart();
+    elements.appContainer.appendChild(cartContainer);
+}
 
 function addAndRemoveListeners() {
     elements.loginForm.removeEventListener('submit', handleClickLogin);
