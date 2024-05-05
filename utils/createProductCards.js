@@ -9,6 +9,7 @@ export function createProcutsCards (cardsContainer, products) {
         // Create the card element
         const card = document.createElement('div');
         card.classList.add('card');
+        card.id = element.id;
 
         // Create the image element
         const image = document.createElement('img');
@@ -38,13 +39,14 @@ export function createProcutsCards (cardsContainer, products) {
         // Create description paragraph
         const description = document.createElement('p');
         description.classList.add('card-text', 'text-truncate');
-        description.title = element.description
+        description.title = element.description;
         description.textContent = element.description;
 
         // Create add to cart button
         const addToCartBtn = document.createElement('a');
-        addToCartBtn.href = '#';
+        addToCartBtn.role = 'button';
         addToCartBtn.classList.add('btn', 'btn-outline-dark');
+        addToCartBtn.id = 'add-to-cart-btn'
         addToCartBtn.textContent = 'Add to cart';
 
         // Append title and price to titlePriceDiv
