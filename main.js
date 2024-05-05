@@ -7,7 +7,7 @@ import { loginThroughLocalStorage } from "./utils/loginThroughLocalStorage.js";
 import { showUsername } from "./utils/showUsername.js";
 import { logout } from "./utils/logout.js";
 import { createCart } from "./utils/createCart.js";
-import { trackAddToCartButtons } from "./utils/trackAddToCartButtons.js";
+import { onAddToCartBtnClick } from "./utils/onAddToCartBtnClick.js";
 
 const appState = {
     error: '',
@@ -76,12 +76,12 @@ function addAndRemoveListeners() {
     elements.loginForm.removeEventListener('submit', handleClickLogin);
     elements.registerForm.removeEventListener('submit', handleClickRegister);
     elements.logoutBtn.removeEventListener('click', () => logout(appState.users));
-    elements.appContainer.removeEventListener('click', () => trackAddToCartButtons(event));
+    elements.appContainer.removeEventListener('click', () => onAddToCartBtnClick(event));
     
     elements.loginForm.addEventListener('submit', handleClickLogin);
     elements.registerForm.addEventListener('submit', handleClickRegister);
     elements.logoutBtn.addEventListener('click', () => logout(appState.users));
-    elements.appContainer.addEventListener('click', () => trackAddToCartButtons(event));
+    elements.appContainer.addEventListener('click', () => onAddToCartBtnClick(event));
 }
 
 async function initializePage() {
