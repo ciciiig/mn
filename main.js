@@ -41,7 +41,7 @@ function render() {
     createPaymentMethods(elements.paymentContainer, appState.paymentMethods);
     createProcutsCards(elements.topProductsCardsContainer, appState.products);
     showUsername(appState.users);
-    initCart();
+    createCart(appState.products, elements.appContainer);
 }
 
 function handleClickLogin (e)  {
@@ -66,22 +66,16 @@ function handleClickRegister (e) {
     registerThroughLocalStorage(registerEmail, registerPassword, appState.users)
 }
 
-function initCart() {
-    const cartContainer = document.createElement('div');
-    cartContainer.innerHTML = createCart();
-    elements.appContainer.appendChild(cartContainer);
-}
-
 function addAndRemoveListeners() {
     elements.loginForm.removeEventListener('submit', handleClickLogin);
     elements.registerForm.removeEventListener('submit', handleClickRegister);
     elements.logoutBtn.removeEventListener('click', () => logout(appState.users));
-    elements.appContainer.removeEventListener('click', () => onAddToCartBtnClick(event));
+    elements.appContainer.removeEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.appContainer));
     
     elements.loginForm.addEventListener('submit', handleClickLogin);
     elements.registerForm.addEventListener('submit', handleClickRegister);
     elements.logoutBtn.addEventListener('click', () => logout(appState.users));
-    elements.appContainer.addEventListener('click', () => onAddToCartBtnClick(event));
+    elements.appContainer.addEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.appContainer));
 }
 
 async function initializePage() {
