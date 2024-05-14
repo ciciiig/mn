@@ -6,7 +6,6 @@ import { registerThroughLocalStorage } from "./utils/registerThroughLocalStorage
 import { loginThroughLocalStorage } from "./utils/loginThroughLocalStorage.js";
 import { showUsername } from "./utils/showUsername.js";
 import { logout } from "./utils/logout.js";
-import { createCart } from "./utils/createCart.js";
 import { onAddToCartBtnClick } from "./utils/onAddToCartBtnClick.js";
 
 const appState = {
@@ -34,6 +33,7 @@ const elements = {
     loginForm: document.forms['loginForm'],
     registerForm: document.forms['registerForm'],
     logoutBtn: document.getElementById('logoutBtn'),
+    cartBody: document.querySelector("#cart-body"),
 }
 
 function render() {
@@ -41,7 +41,6 @@ function render() {
     createPaymentMethods(elements.paymentContainer, appState.paymentMethods);
     createProcutsCards(elements.topProductsCardsContainer, appState.products);
     showUsername(appState.users);
-    createCart(appState.products, elements.appContainer);
 }
 
 function handleClickLogin (e)  {
@@ -70,12 +69,12 @@ function addAndRemoveListeners() {
     elements.loginForm.removeEventListener('submit', handleClickLogin);
     elements.registerForm.removeEventListener('submit', handleClickRegister);
     elements.logoutBtn.removeEventListener('click', () => logout(appState.users));
-    elements.appContainer.removeEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.appContainer));
+    elements.appContainer.removeEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.cartBody));
     
     elements.loginForm.addEventListener('submit', handleClickLogin);
     elements.registerForm.addEventListener('submit', handleClickRegister);
     elements.logoutBtn.addEventListener('click', () => logout(appState.users));
-    elements.appContainer.addEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.appContainer));
+    elements.appContainer.addEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.cartBody));
 }
 
 async function initializePage() {

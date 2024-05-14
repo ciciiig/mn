@@ -2,7 +2,7 @@ import { createCart } from "./createCart.js";
 
 const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || [];
 
-export function onAddToCartBtnClick (event, products, appContainer) {
+export function onAddToCartBtnClick (event, products, cartBody) {
     if (event.target.id && event.target.id.includes('add-to-cart-btn')) {
         const productId = event.target.closest('.card').id;
 
@@ -12,5 +12,5 @@ export function onAddToCartBtnClick (event, products, appContainer) {
         }
     }
 
-    createCart(products, appContainer)
+    createCart(products, cartBody)
 }

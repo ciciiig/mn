@@ -1,40 +1,40 @@
-export function createCart(products, appContainer) {
+export function createCart(products, cartBody) {
     const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || [];
-    const noItems = 'No items added yet.';
-    const cartBody = productsInCart.length > 0 ? productsInCart.map(itemId => `
-        <div class="row">
+    const cartItems = productsInCart.length > 0 ? productsInCart.map(itemId => `
+        <div class="row my-3 align-items-center" data-item-id="${itemId}">
             <div class="col">
                 <img src="${products[itemId - 1].image}" class='img-fluid'>
             </div>
             <div class="col">
-                Quantity <!-- Add quantity logic -->
+                <label for="quantity${itemId}">Quantity:</label>
+                <input class="form-control" type="number" id="quantity${itemId}" name="quantity${itemId}" min="1" max="99" value=1>
             </div>
             <div class="col">
-                Price <!-- Add price logic -->
+                <label for="price${itemId}">Price:</label>
+                <span id="price${itemId}" class="form-control">${Math.round(products[itemId - 1].price)} $</span>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-light mt-4" id='delete-item' aria-label="Close"><i class="bi bi-trash3"></i></button>
             </div>
         </div>
-    `).join('') : noItems;
+    `).join('') : 'Cart is empty.';
 
-    let cartBodyContainer = appContainer.querySelector("#cart-body");
-
-    if (!cartBodyContainer) {
-        const cartMarkup = `
-            <div class="offcanvas offcanvas-end" tabindex="-1" data-bs-scroll="true" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                <div class="offcanvas-header">
-                    <h5 id="offcanvasRightLabel">Cart</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body" id="cart-body">
-                    ${cartBody}
-                </div>
-            </div>
-        `;
-
-        const cartContainer = document.createElement("div");
-        cartContainer.innerHTML = cartMarkup;
-
-        appContainer.appendChild(cartContainer);
-    } else {
-        cartBodyContainer.innerHTML = cartBody;
+    if (productsInCart) {
+        cartBody.innerHTML = cartItems;
     }
+
+    const deleteButtons = document.querySelectorAll('#delete-item');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemId = button.closest('.row').dataset.itemId;
+            removeItemFromCart(itemId);
+            createCart(products, cartBody);
+        });
+    });
+}
+
+function removeItemFromCart(itemId) {
+    const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || [];
+    const updatedCart = productsInCart.filter(id => id !== itemId);
+    localStorage.setItem('productsInCart', JSON.stringify(updatedCart));
 }
