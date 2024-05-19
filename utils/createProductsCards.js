@@ -1,6 +1,8 @@
-export function createProcutsCards (cardsContainer, products) {
+export function createProductsCards (cardsContainer, products) {
     for (let i = 0; i < 4; i++) {
         const element = products[i];
+
+        if (!element) return;
 
         // Create the card div
         const cardDiv = document.createElement('div');

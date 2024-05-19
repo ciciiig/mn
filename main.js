@@ -1,12 +1,13 @@
 import { fetchCategories, fetchProducts } from "./services/fetchData.js";
 import { createNavItems } from "./utils/createNavItems.js";
 import { createPaymentMethods } from "./utils/createPaymentMethods.js";
-import { createProcutsCards } from "./utils/createProductCards.js";
+import { createProductsCards } from "./utils/createProductsCards.js";
 import { registerThroughLocalStorage } from "./utils/registerThroughLocalStorage.js";
 import { loginThroughLocalStorage } from "./utils/loginThroughLocalStorage.js";
 import { showUsername } from "./utils/showUsername.js";
 import { logout } from "./utils/logout.js";
 import { onAddToCartBtnClick } from "./utils/onAddToCartBtnClick.js";
+import { filterProductsRecursively } from "./utils/filterProductsRecursively.js"
 
 const appState = {
     error: '',
@@ -29,17 +30,18 @@ const elements = {
     appContainer: document.getElementById('app-container'),
     navItemsContainer: document.querySelector('#main-nav2 .navbar-nav'),
     paymentContainer: document.getElementById('payment-container'),
-    topProductsCardsContainer: document.getElementById('top-products-cards-container'),
+    productsCardsContainer: document.getElementById('products-cards-container'),
     loginForm: document.forms['loginForm'],
     registerForm: document.forms['registerForm'],
     logoutBtn: document.getElementById('logoutBtn'),
     cartBody: document.querySelector("#cart-body"),
+    seatchInput: document.querySelector('.search-input'),
 }
 
 function render() {
     createNavItems(elements.navItemsContainer, appState.categories);
     createPaymentMethods(elements.paymentContainer, appState.paymentMethods);
-    createProcutsCards(elements.topProductsCardsContainer, appState.products);
+    createProductsCards(elements.productsCardsContainer, appState.products);
     showUsername(appState.users);
 }
 
@@ -75,6 +77,13 @@ function addAndRemoveListeners() {
     elements.registerForm.addEventListener('submit', handleClickRegister);
     elements.logoutBtn.addEventListener('click', () => logout(appState.users));
     elements.appContainer.addEventListener('click', (event) => onAddToCartBtnClick(event, appState.products, elements.cartBody));
+
+    elements.seatchInput.addEventListener('input', (e) => {
+        const query = e.target.value;
+        const filteredProducts = filterProductsRecursively(appState.products, query);
+        elements.productsCardsContainer.innerHTML = ''; 
+        createProductsCards(elements.productsCardsContainer, filteredProducts);
+    });
 }
 
 async function initializePage() {
